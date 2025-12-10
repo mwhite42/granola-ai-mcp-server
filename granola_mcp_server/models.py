@@ -7,8 +7,9 @@ from datetime import datetime
 
 class MeetingMetadata(BaseModel):
     """Meeting metadata information."""
+
     id: str
-    title: str
+    title: Optional[str] = "Untitled Meeting"
     date: datetime
     duration: Optional[int] = None
     participants: List[str] = []
@@ -18,6 +19,7 @@ class MeetingMetadata(BaseModel):
 
 class MeetingDocument(BaseModel):
     """Meeting document information."""
+
     id: str
     meeting_id: str
     title: str
@@ -29,6 +31,7 @@ class MeetingDocument(BaseModel):
 
 class MeetingTranscript(BaseModel):
     """Meeting transcript information."""
+
     meeting_id: str
     content: str
     speakers: List[str] = []
@@ -38,6 +41,7 @@ class MeetingTranscript(BaseModel):
 
 class CacheData(BaseModel):
     """Complete cache data structure."""
+
     meetings: Dict[str, MeetingMetadata] = {}
     documents: Dict[str, MeetingDocument] = {}
     transcripts: Dict[str, MeetingTranscript] = {}
